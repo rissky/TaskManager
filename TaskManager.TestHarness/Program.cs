@@ -1,4 +1,5 @@
-﻿using TaskManager.Logic;
+﻿using Microsoft.Extensions.DependencyInjection;
+using TaskManager.Logic;
 
 namespace TaskManager.TestHarness
 {
@@ -219,5 +220,103 @@ namespace TaskManager.TestHarness
         }
 
     }
-
 }
+
+
+//internal class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        // 1. Setup the DI Container (The "Factory")
+//        var services = new ServiceCollection();
+//        Console.WriteLine("Welcome to the Task Manager Test Harness!");
+//        Console.WriteLine("Press 1 for Class-based implementation, 2 for Record-based implementation, or 3 for Sync List-based implementation:");
+//        string? choice = Console.ReadLine();
+//        if (choice != null)
+//        {
+//            switch (choice)
+//            {
+//                case "1":
+//                    services.AddSingleton<IToDoService, StronglyTypedToDoService>();
+//                    break;
+//                case "2":
+//                    services.AddSingleton<IToDoService, RecordToDoService>();
+//                    break;
+//                case "3":
+//                    services.AddSingleton<IToDoService, SyncListsToDoService>();
+//                    break;
+//                default:
+//                    Console.WriteLine("Invalid choice. Exiting.");
+//                    return;
+//            }
+
+//            // 2. Build the provider
+//            var serviceProvider = services.BuildServiceProvider();
+
+//            // 3. Request the service from the container (Dependency Resolution)
+//            IToDoService serviceManager = serviceProvider.GetRequiredService<IToDoService>();
+
+//            // 4. Run your exact same interactive application loop
+//            bool exit = false;
+//            Console.WriteLine($"Task manager initialized using: {serviceManager.GetType().Name}");
+//            Console.WriteLine("Please enter your name:");
+//            string owner = Console.ReadLine() ?? "DefaultOwner";
+
+//            while (!exit)
+//            {
+//                Console.WriteLine("\nEnter a command (add, remove, complete, list, exit):");
+//                string? command = Console.ReadLine()?.ToLower();
+//                switch (command)
+//                {
+//                    case "add":
+//                        Console.WriteLine("Enter task name:");
+//                        string? taskName = Console.ReadLine();
+//                        Console.WriteLine("Enter due date (yyyy-MM-dd):");
+//                        string? dueDateInput = Console.ReadLine();
+
+//                        if (!DateTime.TryParse(dueDateInput, out DateTime dueDate))
+//                        {
+//                            Console.WriteLine("Invalid date format.");
+//                            break;
+//                        }
+//                        if (string.IsNullOrEmpty(taskName))
+//                        {
+//                            Console.WriteLine("Task name cannot be empty.");
+//                            break;
+//                        }
+
+//                        serviceManager.AddTask(taskName, dueDate, owner);
+//                        break;
+
+//                    case "remove":
+//                        Console.WriteLine("Enter task name to remove:");
+//                        taskName = Console.ReadLine();
+//                        if (!string.IsNullOrEmpty(taskName)) serviceManager.RemoveTask(taskName);
+//                        break;
+
+//                    case "complete":
+//                        Console.WriteLine("Enter task name to mark complete:");
+//                        taskName = Console.ReadLine();
+//                        if (!string.IsNullOrEmpty(taskName)) serviceManager.CompleteTask(taskName);
+//                        break;
+
+//                    case "list":
+//                        for (int i = 0; i < serviceManager.GetTaskCount(); i++)
+//                        {
+//                            var task = serviceManager.GetTask(i);
+//                            Console.WriteLine($"Task: {task.TaskName}, Due: {task.DueDate.ToShortDateString()}, Status/Owner: {task.Status}");
+//                        }
+//                        break;
+
+//                    case "exit":
+//                        exit = true;
+//                        break;
+
+//                    default:
+//                        Console.WriteLine("Unknown command.");
+//                        break;
+//                }
+//            }
+//        }
+//    }
+//}
