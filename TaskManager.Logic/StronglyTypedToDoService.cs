@@ -6,7 +6,7 @@ namespace TaskManager.Logic
     /// <summary>
     /// TodoService class that manages tasks using a single list of ManagedTask objects.  
     /// </summary>
-    public class StronglyTypedToDoService
+    public class StronglyTypedToDoService : IToDoService
     {
         // Unified into a single list of our specific ManagedTask class type
         private List<ManagedTask> ToDoList { get; set; } = new List<ManagedTask>();

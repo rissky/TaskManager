@@ -11,9 +11,29 @@ namespace TaskManager.TestHarness
         /// Forgive my monolith Main method, I just wanted to get this working quickly. 
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)        
+        static void Main(string[] args)
         {
-           
+            Console.WriteLine("Welcome to the Task Manager Test Harness!");
+            Console.WriteLine("Press 1 for Class-based implementation, 2 for Record-based implementation, or 3 for Sync List-based implementation:");
+            string? choice = Console.ReadLine();
+            if (choice != null)
+            {
+                switch (choice)
+                {
+                    case "1":
+                        RunClassBased();
+                        break;
+                    case "2":
+                        RunRecordBased();
+                        break;
+                    case "3":
+                        RunSyncListBased();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Exiting.");
+                        break;
+                }
+            }
         }
 
         private static void RunClassBased()
@@ -196,8 +216,8 @@ namespace TaskManager.TestHarness
                         break;
                 }
             }
+        }
+
     }
-
-
 
 }

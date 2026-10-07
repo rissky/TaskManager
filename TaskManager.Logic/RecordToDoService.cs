@@ -18,7 +18,7 @@ namespace TaskManager.Logic
     /// <summary>
     /// TodoService class that manages tasks using a single, unified list.  
     /// </summary>
-    public class RecordToDoService
+    public class RecordToDoService : IToDoService
     {
         // Unified into a single list of our specific task type
         private List<TodoTask> ToDoList { get; set; } = new List<TodoTask>();

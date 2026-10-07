@@ -3,7 +3,7 @@
     /// <summary>
     /// TodoService class that manages a list of tasks, including their names, due dates, and owners using synchronized simple lists.  
     /// </summary>
-    public class SyncListsToDoService
+    public class SyncListsToDoService : IToDoService
     {
         private List<string> ToDoList_TaskNames { get; set; } = new List<string>();
         private List<DateTime> ToDoList_TaskDueDate { get; set; } = new List<DateTime>();
