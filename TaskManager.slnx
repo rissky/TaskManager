@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TaskManager.Logic/TaskManager.Logic.csproj" />
+  <Project Path="TaskManager.TestHarness/TaskManager.TestHarness.csproj" />
+</Solution>
